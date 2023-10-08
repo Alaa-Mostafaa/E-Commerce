@@ -17,7 +17,17 @@ import { SignupComponent } from './signup/signup.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 
 import {HttpClientModule} from '@angular/common/http'
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import { MainSliderComponent } from './main-slider/main-slider.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ResertPasswordComponent } from './resert-password/resert-password.component';
+import { PaymentComponent } from './payment/payment.component';
+import { LoadingComponent } from './loading/loading.component';
+import { SearchhPipe } from './searchh.pipe';
+
 
 
 @NgModule({
@@ -35,12 +45,23 @@ import { ReactiveFormsModule } from '@angular/forms';
     SigninComponent,
     SignupComponent,
     WishlistComponent,
+    ProductdetailsComponent,
+    MainSliderComponent,
+    ForgetPasswordComponent,
+    ResertPasswordComponent,
+    PaymentComponent,
+    LoadingComponent,
+    SearchhPipe
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    CarouselModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

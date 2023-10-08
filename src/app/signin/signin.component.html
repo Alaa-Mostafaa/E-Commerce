@@ -1,1 +1,38 @@
-<p>signin works!</p>
+
+    <body class="mt-5">
+        <h2 class="mt-5 fw-bold pt-5">login now</h2>
+        <form [formGroup]="signInForm" (ngSubmit)="signIn(signInForm)">
+        <div class="mb-3 mt-4">
+            <label for="" class="form-label fw-bold">Email :</label>
+            <input formControlName="email" type="email" class="form-control" 
+            [class.is-invalid]="signInForm.get('email')?.errors&&signInForm.get('email')?.touched"
+            [class.is-valid]="signInForm.get('email')?.errors == null"
+            >
+            <div class="alert alert-danger" *ngIf="signInForm.get('email')?.errors&&signInForm.get('email')?.touched">
+              <p *ngIf="signInForm.get('email')?.getError('required')">Required Field</p>
+              <p *ngIf="signInForm.get('email')?.getError('pattern')">Pattern is invalid</p>
+
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label fw-bold">Password :</label>
+            <input formControlName="password" type="password" class="form-control"
+            [class.is-invalid]="signInForm.get('password')?.errors&&signInForm.get('password')?.touched"
+            [class.is-valid]="signInForm.get('password')?.errors == null"
+            >
+            <div class="alert alert-danger" *ngIf="signInForm.get('password')?.errors&&signInForm.get('password')?.touched">
+              <p *ngIf="signInForm.get('password')?.getError('required')">Required Field</p>
+              <p *ngIf="signInForm.get('password')?.getError('pattern')">Pattern is invalid</p>
+
+            </div>
+          </div>
+            <div class="mt-4">
+              <a routerLink="/forget" class="text-decoration-none fw-bold ">Forget your password ?</a>
+            </div>
+
+          <button class="btn btn-outline-success float-end" [disabled]="signInForm.invalid">
+            Login now
+            <span class="text-white"><i class="fa-solid fa-spinner fa-spin" *ngIf="isLoading"></i></span> 
+          </button>
+        </form>
+    </body>

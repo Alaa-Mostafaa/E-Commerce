@@ -9,66 +9,75 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-<div class="my-5">
-    <h5>Shop popular  <span class="text-main">categories</span></h5>
-    <div class="row">
-        <div class="col-md-3" *ngFor="let data of catData,let last=last">
-            <div class="bg-light rounded border p-2 text-center">
-                <img [src]="data.image" alt="Category-image" class="w-100 imageStyle"/>
-                <h6>{{data.name}}</h6>
-            </div>
-            <div routerLink="/categories" *ngIf="last" class="d-flex justify-content-end my-3" >
-                <i class="fa-solid text-success fa-2x fa-circle-arrow-right"></i>
-            </div>
-         
 
-        </div>
+<!--  Main Slider -->
+
+<app-main-slider></app-main-slider>
+<!-- End of Main Slider -->
+
+
+
+<!-- Categories Slider -->
+
+<div class="container-fluid ">
+    <owl-carousel-o [options]="customOptions">
+
+        <ng-container *ngFor="let data of catData">
+          <ng-template carouselSlide [id]="data.id">
+            <img [src]="data.image" [alt]="data.alt" [title]="data.name" class="w-100" height="250">
+            <h5 class="text-center pt-3 fw-bold">{{data.name}}</h5>
+          </ng-template>
+        </ng-container>
+    
+      </owl-carousel-o>
+
+</div>
+<!-- End of Categories Slider -->
+
+        
+
+<!-- Products -->
+
+<div class="my-5">
+    <input  class="form-control w-75 m-auto" placeholder="search" type="text" [(ngModel)]="searchvalue">
+
+    <div class="row">
+
+            <div  id="product-card" class="col-3 my-5 p-2" *ngFor="let data of ProductData |searchh:searchvalue " >
+                <a [routerLink]="['/details',data._id]">
+                <div>
+                    <img [src]="data.imageCover" alt="Category-image" class="w-100 " />
+                    <p class="text-success py-1">{{data.category.name}}</p>
+                    <p class="fw-bold">{{data.title}}</p>
+                    <p>{{data.price}} EGP</p>
+                    <div class="float-end">
+                        <i class="fa-solid fa-star p-2 text-warning"></i><span>{{data.ratingsAverage}}</span>
+                    </div>
+                    <br>
+                    <div class="float-end pt-2 ">
+                        <i class="fa-regular fa-heart text-success fs-4"></i>
+                        
+    
+                    </div>
+                    <br>
+                    <div class="text-center pt-4" id="btn-add">
+                        <button class="btn btn-success text-center w-75" (click)="addTocart(data._id)"><i class="fa-solid fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </a>
+       
+    
+            </div>
+        
+       
 
     </div>
 </div>
         
-
-
-<div class="my-5">
-    <h5>Shop popular <span class="text-main">products</span> </h5>
-    <div class="row">
-        <div class="col-md-3" *ngFor="let data of ProductData,let last=last ">
-            <div class="bg-light rounded border p-2 text-center">
-                <img [src]="data.imageCover" alt="Category-image" class="w-100 imageStyle"/>
-                <h6>{{data.title}}</h6>
-            </div>
-            <div routerLink="/products" *ngIf="last" class="d-flex justify-content-end my-3" >
-                <i class="fa-solid text-success fa-2x fa-circle-arrow-right"></i>
-            </div>
-         
-
-        </div>
-
-    </div>
-</div>
-        
+<!-- End of  Products -->
 
 
 
-
-<div class="my-5">
-    <h5>Shop popular <span class="text-main">Brands</span> </h5>
-    <div class="row">
-        <div class="col-md-3" *ngFor="let data of BrandData,let last=last ">
-            <div class="bg-light rounded border p-2 text-center">
-                <img [src]="data.image" alt="Category-image" class="w-100 imageStyle"/>
-                <h6>{{data.name}}</h6>
-            </div>
-            <div routerLink="/brands" *ngIf="last" class="d-flex justify-content-end my-3" >
-                <i class="fa-solid text-success fa-2x fa-circle-arrow-right"></i>
-            </div>
-         
-
-        </div>
-
-    </div>
-</div>
-        
-        <script src="" async defer></script>
-    </body>
+ 
+</body>
 </html>

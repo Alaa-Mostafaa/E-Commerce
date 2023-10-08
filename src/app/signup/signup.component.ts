@@ -8,20 +8,46 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
+  errorMessage:string='';
+  isLoading:boolean=false;
   constructor(private _Auth:AuthService){}
   registerForm:FormGroup=new FormGroup({
     name:new FormControl(null,[Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
     email:new FormControl(null,[Validators.required,Validators.email]),
     password:new FormControl(null,[Validators.required,Validators.pattern('^[A-Z][a-z][0-9]{4,8}')]),
-    repassword:new FormControl(null,[Validators.required,Validators.pattern('^[A-Z][a-z][0-9]{4,8}')]),
-    phone:new FormControl(null,[Validators.required,Validators.pattern('^(002)?(01)[0125][0-9]{8}')]),
+    rePassword:new FormControl(null,[Validators.required,Validators.pattern('^[A-Z][a-z][0-9]{4,8}')]),
+    phone:new FormControl(null,[Validators.required,Validators.pattern('^(002)?(01)[0125][0-9]{8}')])
+  },
+  {validators:this.RepasswordMatch})
 
+  RepasswordMatch(form:any){
+    let password=form.get('password');
+   let rePassword= form.get('rePassword');
 
-  })
+   if(password.value===rePassword.value){
+    return null;
+   }
+   else{
+    rePassword.setErrors({rePasswordMatch:"Repassword not match "})
+    return {rePasswordMatch:"Repassword not match "}
+   }
+
+  }
   
   signUp(Formdata:FormGroup){
+    this.isLoading=true;
     console.log(Formdata.value)
-    this._Auth.signUp(Formdata).subscribe();
+    this._Auth.signUp(Formdata.value).subscribe({
+      next:(response)=>{console.log(response)
+      this.isLoading=false;
+      },
+      error:(err)=>{console.log(err.error.message)
+        this.errorMessage=err.error.message;
+        this.isLoading=false;
+
+      }
+      
+  });
 
   }
 

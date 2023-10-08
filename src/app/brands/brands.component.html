@@ -1,1 +1,15 @@
-<p>brands works!</p>
+<body>
+<h1 class="text-center text-success mt-5 fw-bold">All Brands</h1>
+<div class="container my-5 ">
+    <div class="row gx-5">
+        <div  id="brand-card" class="col-3" *ngFor="let data of BrandData" >
+            <div>
+                <img [src]="data.image" alt="Category-image" class="w-100 " />
+                <p class="text-center py-1">{{data.name}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+        
+</body>

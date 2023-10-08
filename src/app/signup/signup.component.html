@@ -10,6 +10,7 @@
     </head>
     <body>
         <h1>Register Form</h1>
+        <h2 class="alert alert-danger" *ngIf="errorMessage.length > 0">{{errorMessage}}</h2>
       <form [formGroup]="registerForm" (ngSubmit)="signUp(registerForm)">
         <div class="mb-3">
             <label for="" class="form-label">name</label>
@@ -37,14 +38,17 @@
               <p *ngIf="registerForm.get('password')?.getError('required')">Required Field</p>
               <p *ngIf="registerForm.get('password')?.getError('pattern')">Pattern is invalid</p>
 
+
             </div>
           </div>
           <div class="mb-3">
-            <label for="" class="form-label">repassword</label>
-            <input formControlName="repassword" type="password" class="form-control">
-            <div class="alert alert-danger" *ngIf="registerForm.get('repassword')?.errors&&registerForm.get('repassword')?.touched">
-              <p *ngIf="registerForm.get('repassword')?.getError('required')">Required Field</p>
-              <p *ngIf="registerForm.get('repassword')?.getError('pattern')">Pattern is invalid</p>
+            <label for="" class="form-label">rePassword</label>
+            <input formControlName="rePassword" type="password" class="form-control">
+            <div class="alert alert-danger" *ngIf="registerForm.get('rePassword')?.errors&&registerForm.get('rePassword')?.touched">
+              <p *ngIf="registerForm.get('rePassword')?.getError('required')">Required Field</p>
+              <p *ngIf="registerForm.get('rePassword')?.getError('pattern')">Pattern is invalid</p>
+              <p *ngIf="registerForm.get('rePassword')?.getError('rePasswordMatch')">Repassword is not match</p>
+
 
             </div>
           </div>
@@ -57,7 +61,10 @@
 
             </div>
           </div>
-          <button class="btn btn-success" [disabled]="registerForm.invalid">Submit</button>
+          <button class="btn btn-success" [disabled]="registerForm.invalid">
+            Register
+            <span class="text-white"><i class="fa-solid fa-spinner fa-spin" *ngIf="isLoading"></i></span> 
+          </button>
       </form>
         
     </body>

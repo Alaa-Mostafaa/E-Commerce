@@ -1,1 +1,19 @@
-<p>wishlist works!</p>
+<div class="my-5 bg-main-light p-5">
+    <h3>Wish List</h3>
+  
+    <div class=" my-3" *ngFor="let brands of wishDetails">
+        <div  class="row py-2 border-bottom">
+            <div class="col-md-3">
+                <img [src]="brands.imageCover
+                " [alt]="brands.title" class="w-100">
+            </div>
+            <div class="col-md-9 d-flex justify-content-between">
+                <div>
+                    <h6>{{brands.title}}</h6> 
+                    <button  (click)="removeItem(brands.id)"  class="btn btn-outline-danger">
+                        <i class="fa-regular mx-2 fa-trash-can"></i>Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

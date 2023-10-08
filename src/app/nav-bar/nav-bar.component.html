@@ -1,51 +1,154 @@
-<!DOCTYPE html>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="fa-solid fa-cart-shopping clearfix text-success me-2"></i>FreshCart</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul *ngIf="islogin"  class="navbar-nav m-auto mt-2 mt-lg-0">
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="text-success" routerLink="home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="text-success" routerLink="categories">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="text-success" routerLink="brands">Brands</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="text-success" routerLink="products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="text-success" routerLink="wishlist">Wishlist</a>
+        </li>
+        <li   class="nav-item">
+          <a class="nav-link" routerLinkActive="text-success" routerLink="cart">Cart</a>
+        </li>
+        <li *ngIf="islogin"  class="position-relative nav-item">
+          <a class="nav-link" routerLinkActive="text-success" routerLink="cart">
+       <i class="fas fa-cart-shopping text-main fa-lg"></i>
+        <span class="badge bg-main text-light position-absolute top-0 end-0" >{{cartNumber}}</span>
+          </a>
+          </li>
+      </ul>
+
+        
+      <div class="form-inline ms-auto my-3 my-lg-0">
+
+
+          <i class="fab fa-facebook px-1"></i>
+          <i class="fab fa-twitter px-1"></i>
+          <i class="fab fa-instagram px-1"></i>
+          <i class="fab fa-behance px-1"></i>
+          <i class="fab fa-youtube px-1"></i>
+
+        
+          <a   *ngIf="!islogin" class="nav-link d-inline-block px-2"routerLink="signin">Login</a>
+          <a    *ngIf="!islogin" class="nav-link d-inline-block px-2"routerLink="signup">Register</a>
+          
+          <a *ngIf="islogin"  (click)="LOGOUT()" class="nav-link d-inline-block px-2 cursor-pointer">Logout</a>
+          </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="home">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLink="cart">Cart</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLink="products">Products</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLink="categories">Categories</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLink="brands">Brands</a>
-                  </li>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-2">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold fs-3" href="#">
+          <i class="fa-solid fa-cart-shopping text-success"></i>
+          Fresh Cart</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="islogin">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" routerLink="home"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="cart">Cart</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="wishlist">Wish list</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="products">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="categories">Categories</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="brands">Brands</a>
+              </li>
+              <li  class="nav-item position-relative">
+                <a routerlink="cart" class="nav-link"><i class="fa-solid fa-cart-shopping fs-3"></i>
+                <div class="badge position-absolute text-white top-0 end-0 bg-main">0</div></a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" (click)="LOGOUT()">log out</a>
+            </li>
+           
+            </ul>
+              
+          </div>
+          
+          
+                <ul *ngIf="!islogin">
                   <li class="nav-item">
                     <a class="nav-link" routerLink="signup">Sign Up</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" routerLink="signin">Sign In</a>
                   </li>
-                 
-                 
                 </ul>
-              
-              </div>
-            </div>
-          </nav>
-    
-        <script src="" async defer></script>
-    </body>
+               
+        </div>
+      </div>
+    </nav>
+  </body>
 </html>
+ -->

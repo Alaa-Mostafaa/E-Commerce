@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from '../services/cart-service.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -7,4 +8,30 @@ import { Component } from '@angular/core';
 })
 export class WishlistComponent {
 
+  wishDetails:any
+  constructor(private _cart:CartService) {
+
+  }
+  ngOnInit(): void {
+    this.getWish()
+  }
+  removeItem(productId:string){
+    this._cart.removeCartItem(productId).subscribe({
+      next:(response)=>{console.log(response)
+      this.wishDetails=response.data
+    },
+      error:(err)=>{console.log(err)}
+    })
+  }
+
+
+  getWish(){
+    this._cart.getLoggedUserWish().subscribe({
+      next:(response)=>{
+        console.log(response.data)
+        this.wishDetails=response.data
+
+  }
+    })
+  }
 }

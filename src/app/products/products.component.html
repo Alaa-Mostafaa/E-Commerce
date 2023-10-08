@@ -1,1 +1,41 @@
-<p>products works!</p>
+
+<div class="my-5">
+    <input  class="form-control w-75 m-auto" placeholder="search" type="text" [(ngModel)]="searchvalue">
+
+
+    <div class="row">
+
+        <div class="alert alert-success fw-bold fs-3 text-success" *ngIf="display.length>0">
+            {{display}}
+        </div>
+        <div  id="product-card" class="col-3 my-5 p-2" *ngFor="let data of ProductData |searchh:searchvalue " >
+            
+            <div>
+                
+                <img [src]="data.imageCover" alt="Category-image" class="w-100 " />
+                <p class="text-success py-1">{{data.category.name}}</p>
+                <p class="fw-bold">{{data.title}}</p>
+                <p>{{data.price}} EGP</p>
+                <div class="float-end">
+                    <i class="fa-solid fa-star p-2 text-warning"></i><span>{{data.ratingsAverage}}</span>
+                </div>
+                <br>
+<!--                     <i class="fa-solid fa-heart text-success fs-4 float-end pt-2 " *ngIf="!heartcolor" (click)="removefromwishList(data.category._id)"></i>
+ -->                    <i class="fa-regular fa-heart text-success fs-4 float-end pt-2 "  (click)="addToWish(data._id)" id="heart"></i>
+
+
+               
+                <br>
+                <div class="text-center pt-4" id="btn-add">
+                    <button class="btn btn-success text-center w-75"><i class="fa-solid fa-plus" (click)="addTocart(data._id)"></i> Add</button>
+                </div>
+            </div>
+   
+
+        </div>
+
+    </div>
+</div>
+
+
+        
